@@ -11,9 +11,9 @@ export type DefaultTheme = {
   background: 'primary'
   color: 'primary' | 'heading' | 'text'
   radii: 'default'
-  fontSize: 'sm' | 'md' | 'lg' | 'xlg'
+  fontSize: 'xsm' | 'sm' | 'md' | 'lg' | 'xlg' 
   spacing: Spacing,
-  button: Button
+  button: Button,
 }
 
 export const default_theme = {
@@ -25,10 +25,17 @@ export const default_theme = {
     heading: '#000000',
     text: '#372B2B'
   },
+  input: {
+    borderColor: {
+      unFocused: '#C3C3C3',
+      focused: '#333333'
+    }
+  },
   raddi: {
     default: 5
   },
   fontSize: {
+    xsm: 14,
     sm: 16,
     md: 20,
     lg: 25,

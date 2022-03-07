@@ -10,7 +10,6 @@ type Props = ButtonTypes & TouchableOpacityProps & {
 } 
 
 import { ligh_theme } from '../../../theme'
-import { RectButton } from 'react-native-gesture-handler'
 
 const buttonTheme = ligh_theme.button
 

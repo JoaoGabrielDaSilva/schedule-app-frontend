@@ -42,7 +42,7 @@ const data = [
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 
-export const Onboarding = () => {
+export const Onboarding = ({navigation: {navigate}}) => {
 
   const translateX = useSharedValue(0)
 
@@ -53,19 +53,22 @@ export const Onboarding = () => {
       translateX.value = event.contentOffset.x
     }
   })
+  
 
   const nextSlide = () => {
-
     const currentIndex = Math.round(translateX.value / width)
     const nextSlideX = (currentIndex + 1) * width
 
+    const isLastSlide = currentIndex + 1 === data.length
+
     if (scrollViewRef && scrollViewRef?.current) {
-      if (currentIndex < data.length) {
-        console.log(123);
-        
+      if (!isLastSlide) {        
         return scrollViewRef?.current?.scrollTo({x:nextSlideX , animated: true})
       }
+      console.log('s');
+
       
+      navigate('Login')
     }
   }
 
