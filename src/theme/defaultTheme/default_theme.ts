@@ -1,7 +1,8 @@
 import { sizes } from "./Button"
 import { Button } from "./Button/Button"
 import { contained } from "./Button"
-import { text, heading, align } from './Typography'
+import { align } from './Typography/Align'
+import { text, heading  } from './Typography/Variants'
 
 
 export type Spacing = 'sm'| 'md' | 'lg' | 'xlg'

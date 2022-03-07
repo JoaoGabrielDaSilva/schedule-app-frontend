@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Dimensions, SafeAreaView, View } from 'react-native'
-import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, interpolate, Extrapolate, useAnimatedRef } from 'react-native-reanimated'
+import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, interpolate, Extrapolate, useAnimatedRef, withTiming } from 'react-native-reanimated'
 
 import { ligh_theme } from '../../theme'
 import SvgImage from '../../assets/svg/Onboarding/step_1.svg'
@@ -40,11 +40,13 @@ const data = [
   },
 ]
 
+const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
+
 export const Onboarding = () => {
 
   const translateX = useSharedValue(0)
 
-  const scrollViewRef = useAnimatedRef()
+  const scrollViewRef = useAnimatedRef<ScrollView>()
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
@@ -53,32 +55,33 @@ export const Onboarding = () => {
   })
 
   const nextSlide = () => {
-    
-    console.log(scrollViewRef?.current.s);
+
+    const currentIndex = Math.round(translateX.value / width)
+    const nextSlideX = (currentIndex + 1) * width
+
     if (scrollViewRef && scrollViewRef?.current) {
-      const currentIndex = translateX.value / width
       if (currentIndex < data.length) {
+        console.log(123);
         
-        return scrollViewRef.current?.scrollTo({x: currentIndex * width, animated: true})
+        return scrollViewRef?.current?.scrollTo({x:nextSlideX , animated: true})
       }
-      console.log('fim');
       
     }
   }
 
 
   return (
-    <SafeAreaView  style={[styles.container]}>
-      <Animated.ScrollView ref={scrollViewRef} onScroll={scrollHandler} horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
+    <SafeAreaView style={[styles.container]}>
+      <AnimatedScrollView overScrollMode='never' ref={scrollViewRef}  onScroll={scrollHandler} horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
         {data.map((item, index) => {
           return <OnboardingContent key={index} index={index} data={item} translateX={translateX}/>
         })}
-      </Animated.ScrollView>
-      <View style={{flex: 1,flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+      </AnimatedScrollView>
+      <View style={{flex: 0.5, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
         {data.map((_, index) => ( <Circle key={index} index={index} translateX={translateX}/>
         ))}
       </View>
-      <Button onPress={nextSlide} style={{flex: 1,alignSelf: 'center', marginBottom: ligh_theme.spacing.xlg}} text="Button" variant="contained" padding='md' size='fill' icon="ios-arrow-forward"/>
+      <Button onPress={nextSlide} style={{alignSelf: 'center', marginBottom: ligh_theme.spacing.xlg}} text="Button" variant="contained" padding='md' size='fill' icon="ios-arrow-forward"/>
     
     </SafeAreaView>)
 }

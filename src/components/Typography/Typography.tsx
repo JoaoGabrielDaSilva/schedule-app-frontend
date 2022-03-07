@@ -17,7 +17,6 @@ export const Typography = ({children, variant = 'text', align = 'left', ...props
   const typographyStyles = {...typographyVariant }
   
   
-  
   return  <View {...props}>
     <Text style={[typographyStyles]} >{children}</Text>
   </View>

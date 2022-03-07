@@ -1,11 +1,13 @@
 import React from 'react'
 import { Dimensions, View } from 'react-native'
 import Animated, { Extrapolate, interpolate, SharedValue, useAnimatedStyle } from 'react-native-reanimated'
+import Svg from 'react-native-svg'
 import { Typography } from '../../../components/Typography'
 import { ligh_theme } from '../../../theme'
-import { Circle } from '../Circle'
 
 import { styles } from './styles'
+
+import A from '../../../assets/svg/Onboarding/step_1.svg'
 
 interface Props {
   index: number, 
@@ -36,7 +38,7 @@ export const OnboardingContent = ({index, translateX, data: {title, text, image}
   
 
   return (<Animated.View style={[animatedStyles, styles.wrapper, {paddingHorizontal: ligh_theme.spacing.lg}]}>
-    <Typography  style={{alignSelf: 'flex-start', marginTop: ligh_theme.spacing.xlg}} variant='heading'>{title}</Typography>
+    <Typography style={{alignSelf: 'flex-start', marginTop: ligh_theme.spacing.xlg}} variant='heading'>{title}</Typography>
         <Animated.View>
         <Image style={[styles.image]}/>
         </Animated.View>

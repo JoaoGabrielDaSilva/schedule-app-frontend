@@ -10,6 +10,7 @@ type Props = ButtonTypes & TouchableOpacityProps & {
 } 
 
 import { ligh_theme } from '../../../theme'
+import { RectButton } from 'react-native-gesture-handler'
 
 const buttonTheme = ligh_theme.button
 
@@ -32,7 +33,7 @@ export const Button = ({onPress, text, variant = 'contained', padding, size = 'd
   
   
   return <TouchableOpacity onPress={onPress} {...props}>
-    <View style={[containerStyles, icon ? stylesWithIcon : stylesWithoutIcon]}>
+    <View  style={[containerStyles, icon ? stylesWithIcon : stylesWithoutIcon]}>
     <Text style={[textStyles]}>
       {text}
     </Text>
