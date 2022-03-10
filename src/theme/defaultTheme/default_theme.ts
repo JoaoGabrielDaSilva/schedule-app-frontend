@@ -7,9 +7,17 @@ import { text, heading  } from './Typography/Variants'
 
 export type Spacing = 'sm'| 'md' | 'lg' | 'xlg'
 
+interface ColorWithTone {
+  500?: string 
+} 
+
+interface Gray {
+  gray: ColorWithTone
+}
+
 export type DefaultTheme = {
   background: 'primary'
-  color: 'primary' | 'heading' | 'text'
+  color: 'primary' | 'heading' | 'text' | Gray
   radii: 'default'
   fontSize: 'xsm' | 'sm' | 'md' | 'lg' | 'xlg' 
   spacing: Spacing,
@@ -23,7 +31,10 @@ export const default_theme = {
   color: {
     primary: '#F46161',
     heading: '#000000',
-    text: '#372B2B'
+    text: '#372B2B',
+    gray: {
+      500: '#333333'
+    }
   },
   input: {
     borderColor: {

@@ -1,3 +1,3 @@
 export type Sizes = {
-  size: 'fill' | 'default' | 'large'
+  size?: 'fill' | 'default' | 'large'
 }

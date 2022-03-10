@@ -16,8 +16,7 @@ const TextInput = ({name, control,label, defaultValue = '', onFocus, onBlur, ...
   return (<Controller 
     name={name}
     control={control}
-    render={({field: {name, value, onChange}}) => {
-      console.log(value);
+    render={({field: {name, value, onChange}, }) => {
       
       return <TextInputBase
         name={name}

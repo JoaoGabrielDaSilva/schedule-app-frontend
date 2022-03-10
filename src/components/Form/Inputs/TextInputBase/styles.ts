@@ -20,6 +20,10 @@ export const styles = StyleSheet.create({
     fontSize: RFValue(ligh_theme.fontSize.md),
     color: ligh_theme.color.primary
   },
+  eyeIcon: {
+    color: ligh_theme.color.gray[500],
+    fontSize: RFValue(ligh_theme.fontSize.md)
+  },
   floatingLabelWrapper: {
     padding: 5,
     position: 'absolute',

@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useState } from 'react'
+import React, { RefObject, useEffect, useImperativeHandle, useState } from 'react'
 import { TextInput as Input, TextInputProps, Text, NativeSyntheticEvent, TextInputFocusEventData, ViewStyle, TextInput, TouchableWithoutFeedback, TouchableOpacity, Keyboard, BackHandler } from 'react-native'
 import {Control, FieldValues} from 'react-hook-form'
 
@@ -23,6 +23,8 @@ export interface TextInputBaseProps extends TextInputProps {
 }
 
 
+
+
 const TextInputBase = ({name, value, control,label, onChangeText, defaultValue = '', onFocus, onBlur, style, type = 'text', icon = 'mail', ...props}: TextInputBaseProps, ref: RefObject<TextInput>) => {
 console.log(value);
 
@@ -43,7 +45,7 @@ console.log(value);
     }
   })
 
-  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  const handleFocus = (e?: NativeSyntheticEvent<TextInputFocusEventData>) => {
     focus.value = withTiming(1, {duration: 200})
 
     if (onFocus) {
@@ -74,6 +76,10 @@ console.log(value);
     setIsTextHidden(current => !current)
   }
 
+  // useImperativeHandle(ref, () => ({
+  //   focus:
+  // }))
+
   useEffect(() => {
     const keyboardListener = Keyboard.addListener(('keyboardDidHide'), () => handleBlur())
     
@@ -86,8 +92,8 @@ console.log(value);
           <Text style={styles.floatingLabel}>{label}</Text>
         </Animated.View>
         <Ionicons name={icon} style={styles.icon} onPress={handleClickInContainer}/>
-        <Input ref={ref} value={value} style={styles.input} onChangeText={text => onChangeText(text)} onFocus={handleFocus} onBlur={handleBlur} secureTextEntry={type === 'password' && isTextHidden} {...props}/>
-        {type === 'password' &&  <Ionicons name={isTextHidden ? 'eye-off' : 'eye'} style={styles.icon} onPress={toggleVisibility}/>}
+        <Input ref={ref} value={value} style={styles.input} onChangeText={text => onChangeText(text)} onFocus={handleFocus} onBlur={handleBlur} secureTextEntry={type === 'password' && isTextHidden} autoCorrect={false} {...props}/>
+        {type === 'password' &&  <Ionicons name={isTextHidden ? 'eye-off' : 'eye'} style={styles.eyeIcon} onPress={toggleVisibility}/>}
       </Animated.View>
  )
 }
