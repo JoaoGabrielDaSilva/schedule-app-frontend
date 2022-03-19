@@ -3,8 +3,11 @@
     "name": "schedule-app",
     "slug": "schedule-app",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"],
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "package": "com.scheduleapp"
+    },
+    "plugins": ["@react-native-google-signin/google-signin"]
   }
 }

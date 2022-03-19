@@ -1,16 +1,40 @@
 import React, { ReactChild } from "react";
-import { StyleProp, Text, View, ViewStyle } from "react-native";
-import { ligh_theme } from "../../theme";
-import { Typography as TypoGraphyTypes } from "../../theme/defaultTheme/Typography/Typography";
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native";
 
-type Props = TypoGraphyTypes &
-  ViewStyle & {
-    children: ReactChild;
-    color?: string;
-    style?: StyleProp<ViewStyle>;
-  };
+type Variant = "text" | "heading";
 
-const typographyTheme = ligh_theme.typography;
+type Align = "left" | "center" | "right";
+
+type Props = TextStyle & {
+  children: ReactChild;
+  color?: string;
+  style?: StyleProp<ViewStyle>;
+  variant?: Variant;
+  align?: Align;
+};
+
+const variants = StyleSheet.create({
+  text: {
+    fontSize: 15,
+    fontWeight: "300",
+    color: "#372B2B",
+    lineHeight: 20,
+  },
+  heading: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "#000000",
+  },
+});
+
+import { styles } from "./styles";
 
 export const Typography = ({
   children,
@@ -19,13 +43,9 @@ export const Typography = ({
   color,
   ...props
 }: Props) => {
-  const typographyVariant = typographyTheme.variant[variant];
-
-  const typographyStyles = { ...typographyVariant, color };
-
   return (
     <View {...props}>
-      <Text style={[typographyStyles]}>{children}</Text>
+      <Text style={[styles.text, variants[variant]]}>{children}</Text>
     </View>
   );
 };

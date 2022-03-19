@@ -1,26 +1,25 @@
-import { sizes } from "./Button";
-import { Button } from "./Button/Button";
-import { contained } from "./Button";
-import { align } from "./Typography/Align";
-import { text, heading } from "./Typography/Variants";
+type Spacing = "sm" | "md" | "lg" | "xlg";
 
-export type Spacing = "sm" | "md" | "lg" | "xlg";
+type FontSize = "xsm" | "sm" | "md" | "lg" | "xlg";
 
-interface ColorWithTone {
-  500?: string;
-}
+type Color = "primary" | "heading" | "text" | Gray;
 
-interface Gray {
+type Background = "primary";
+
+type Radii = "default";
+
+type ColorWithTone = "300" | "500";
+
+type Gray = {
   gray: ColorWithTone;
-}
+};
 
 export type DefaultTheme = {
-  background: "primary";
-  color: "primary" | "heading" | "text" | Gray;
-  radii: "default";
-  fontSize: "xsm" | "sm" | "md" | "lg" | "xlg";
+  background: Background;
+  color: Color;
+  radii: Radii;
+  fontSize: FontSize;
   spacing: Spacing;
-  button: Button;
 };
 
 export const default_theme = {
@@ -57,18 +56,5 @@ export const default_theme = {
     md: 10,
     lg: 15,
     xlg: 25,
-  },
-  button: {
-    variant: {
-      contained,
-    },
-    size: { ...sizes },
-  },
-  typography: {
-    variant: {
-      text,
-      heading,
-    },
-    align,
   },
 };
