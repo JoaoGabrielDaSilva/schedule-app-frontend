@@ -30,6 +30,7 @@ export const default_theme = {
     primary: "#F46161",
     heading: "#000000",
     text: "#372B2B",
+    white: "#FFFFFF",
     gray: {
       300: "#CCCCCC",
       500: "#333333",
@@ -50,6 +51,7 @@ export const default_theme = {
     md: 20,
     lg: 25,
     xlg: 30,
+    xxlg: 40,
   },
   spacing: {
     sm: 5,
