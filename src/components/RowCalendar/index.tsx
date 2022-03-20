@@ -56,10 +56,14 @@ const today = new Date();
 export const RowCalendar = ({}: Props) => {
   const translateX = useSharedValue(0);
 
-  const yearWidth = 1700;
+  // const yearWidth = 1700;
 
-  const INPUT_RANGE = Array.from({ length: 12 }).flatMap((_, index) => {
-    return [yearWidth * (index + 1) - 60, yearWidth * (index + 1)];
+  const INPUT_RANGE = Array.from({ length: 12 }).flatMap((_, month) => {
+    const daysInMonth = getDaysInMonth(new Date(year, month));
+    const yearWidth = (month + 1) * (daysInMonth * ITEM_SIZE);
+    console.log(yearWidth);
+
+    return [yearWidth * (month + 1) - 60, yearWidth * (month + 1)];
   });
 
   const OUTPUT_RANGE = Array.from({ length: 12 }).flatMap((_, index) => {
