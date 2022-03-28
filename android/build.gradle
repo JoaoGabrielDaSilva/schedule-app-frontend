@@ -2,10 +2,12 @@
 
 buildscript {
     ext {
-        buildToolsVersion = "29.0.3"
-        minSdkVersion = 21
+        buildToolsVersion = "30.0.0" 
+        minSdkVersion = "24"
         compileSdkVersion = 30
         targetSdkVersion = 30
+        kotlinVersion = '1.6.10'
+        googlePlayServicesAuthVersion = "19.2.0" // <--- use this version or newer
     }
     repositories {
         google()
@@ -14,11 +16,14 @@ buildscript {
     }
     dependencies {
         classpath 'com.google.gms:google-services:4.3.3'
-        classpath("com.android.tools.build:gradle:4.1.0")
-
+        classpath("com.android.tools.build:gradle:4.0.1")
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+
+    
+
 }
 
 allprojects {
@@ -37,5 +42,15 @@ allprojects {
         mavenCentral()
         jcenter()
         maven { url 'https://www.jitpack.io' }
+
+        google()
+        maven {
+            // All of Detox' artifacts are provided via the npm module
+            url "$rootDir/../node_modules/detox/Detox-android"
+        }
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url "$rootDir/../node_modules/react-native/android"
+        }
     }
 }
