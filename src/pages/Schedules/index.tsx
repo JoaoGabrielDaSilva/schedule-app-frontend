@@ -16,7 +16,6 @@ export const Schedules = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        paddingHorizontal: theme.spacing.xlg,
         backgroundColor: theme.background.primary,
       }}
     >
